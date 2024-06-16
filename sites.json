@@ -1,0 +1,7 @@
+{
+	"home": ["main.html", "Home", true, [false, "Zarejestruj się na mojej pięknej stronie", "#aaf"]],
+	"sklep": ["sklep.html", "Sklep", true, [true, "Zarejestruj się na mojej pięknej stronie", "#fa2"]],
+	"tworczosc": ["tworczosc.html", "Twórczość", true, [true, "Zarejestruj się na mojej pięknej stronie", "#f8f"]],
+	"rejestracja": ["register.html", "Rejestracja", false, [true, "Zarejestruj się na mojej pięknej stronie", "#aaf"]],
+	"logowanie": ["login.html", "Logowanie", false, [true, "Zaloguj się na swoje konto", "#aaf"]]
+}

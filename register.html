@@ -1,0 +1,137 @@
+<link rel="stylesheet" type="text/css" href="css/register.css">
+<script>
+	const nick = document.getElementById("nick");
+	const email = document.getElementById("email");
+	const cemail = document.getElementById("cemail");
+	const passw = document.getElementById("passw");
+	const cpassw = document.getElementById("cpassw");
+	const err = document.getElementById("error");
+	const email_reg = new RegExp('^[a-zA-Z0-9_!#$%&"*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$');
+	const passw_reg = new RegExp('^[a-zA-Z0-9_!#$%"*+/=?`{|}~^. -]+$');
+	const guzior = document.getElementById("register_button");
+	const formik = document.getElementById("register_form");
+	let c1 = null;
+	let c2 = null;
+	let c3 = null;
+	let c4 = null;
+	let c5 = null;
+
+	function isEmpty() {
+		if (email.value != "" && cemail.value != "" && passw.value != "" && cpassw.value != "" && nick.value != "") {
+			return false;
+		}else{
+			return true;
+		}
+	}
+	function registerUser() {
+		if (cemail.value != email.value) {
+			err.innerHTML = "Emaile nie są takie same";
+			cemail.setCustomValidity("valueMissing");
+		}else if (cpassw.value != passw.value) {
+			err.innerHTML = "Hasła nie są identyczne";
+			cpassw.setCustomValidity("valueMissing");
+		}else if (formik.checkValidity() && !isEmpty()) {
+			$.ajax({
+				url: "validate_signup.php",
+				type: "POST",
+				data: $("#register_form").serialize(),
+				success: function (res) {
+					console.log(res);
+				}
+			});
+		}
+	}
+	// Confirm Password
+	cpassw.addEventListener("keyup", function () {
+		clearTimeout(c5);
+		
+		c5 = setTimeout(function () {
+			if (cpassw.value != passw.value) {
+				err.innerHTML = "Hasła nie są identyczne";
+				cpassw.setCustomValidity("valueMissing");
+			}else{
+				err.innerHTML = "";
+				cpassw.setCustomValidity("");
+			}
+		}, 1000);
+	});
+	// Password
+	passw.addEventListener("keyup", function () {
+		clearTimeout(c4);
+		
+		c4 = setTimeout(function () {
+			passw_v = passw.value;
+			if (!passw_reg.test(passw_v)) {
+				err.innerHTML = "Hasło zawiera niedopuszczalne znaki";
+				passw.setCustomValidity("valueMissing");
+			}else if (passw_v.length > 128) {
+				err.innerHTML = "Hasło jest za długie";
+				passw.setCustomValidity("valueMissing");
+			}else if (passw_v.length < 8) {
+				err.innerHTML = "Hasło musi zawierać 8 znaków";
+				passw.setCustomValidity("valueMissing");
+			}else{
+				err.innerHTML = "";
+				passw.setCustomValidity("");
+			}
+		}, 1000);
+	});
+	// Confirm Email
+	cemail.addEventListener("keyup", function () {
+		clearTimeout(c1);
+		
+		c1 = setTimeout(function () {
+			if (cemail.value != email.value) {
+				err.innerHTML = "Emaile nie są takie same";
+				cemail.setCustomValidity("valueMissing");
+			}else{
+				err.innerHTML = "";
+				cemail.setCustomValidity("");
+			}
+		}, 1000);
+	});
+	// Email
+	email.addEventListener("keyup", function () {
+		clearTimeout(c2);
+		
+		c2 = setTimeout(function () {
+			if (email.value.search(" ") != -1) {
+				err.innerHTML = "Email zawiera spacje";
+				email.setCustomValidity("valueMissing");
+			}else if (!email_reg.test(email.value)) {
+				err.innerHTML = "Email jest niepoprawny";
+				email.setCustomValidity("valueMissing");
+			}else{
+				err.innerHTML = "";
+				email.setCustomValidity("");
+			}
+		}, 1000);
+	});
+	// Nick
+	nick.addEventListener("keyup", function () {
+		clearTimeout(c3);
+
+		c3 = setTimeout(function () {
+			if (nick.value.length < 2) {
+				err.innerHTML = "Nick musi zawierać co najmniej 2 znaki";
+				nick.setCustomValidity("valueMissing");
+			}else if (nick.value.length > 32) {
+				err.innerHTML = "Nick nie może być dłuższy niż 32 znaki";
+				nick.setCustomValidity("valueMissing");
+			}else{
+				err.innerHTML = "";
+				nick.setCustomValidity("");
+			}
+		}, 1000);
+	});
+</script>
+
+<form action="validate_signup.php" method="post" id="register_form" autocomplete="off" spellcheck="false">
+	<input type="text" id="nick" name="nick" placeholder="Nick">
+	<input type="text" id="email" name="email" placeholder="Email">
+	<input type="text" id="cemail" name="cemail" placeholder="Confirm Email">
+	<input type="password" id="passw" name="passw" placeholder="Password">
+	<input type="password" id="cpassw" name="cpassw" placeholder="Confirm Password">
+	<p id="error"></p>
+	<input type="button" value="Sign up" id="register_button" onclick="registerUser()">
+</form>

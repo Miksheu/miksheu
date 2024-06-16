@@ -1,0 +1,16 @@
+<h1 style="margin-bottom: 60px;">Poznaj moją twórczość! <span style="color: #f46">~Miksheu ♡</span></h1>
+<div id="align_buttons">
+	<script>
+		let oc = $.getJSON("oc.json", function(json) {
+			$.each(json, function(s_path, d) {
+				let title = d[0]; // Title
+				let desc = d[1]; // Description
+				let col = d[2]; // Titlebox color
+
+				if (navbar) {
+					addRoundButton(title, col, desc, "tworczosc/" + s_path);
+				}
+			});
+		});
+	</script>
+</div>

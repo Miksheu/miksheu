@@ -1,0 +1,108 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300,500&display=swap");
+body {
+	background-color: #222;
+	background-image: url("https://images.hdqwalls.com/download/auroral-forest-4k-illustration-h0-1920x1080.jpg") !important;
+	margin: 0px;
+}
+#front {
+	background: #222a;
+	max-width: 1000px;
+	padding: 30px 50px;
+	margin: auto;
+	margin-top: 30px;
+	box-shadow: 0px 0px 10px #000;
+}
+p, a {
+	color: #eee;
+	font-family: "Arial", sans-serif;
+	font-size: 18px;
+}
+p a {
+	color: #4af;
+}
+h1 {
+	color: #eee;
+	font-family: "Montserrat", sans-serif;
+	font-weight: 300;
+	font-size: 40px;
+	text-align: center;
+	letter-spacing: 1px;
+}
+#navbar {
+	background-color: #222a;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-items: center;
+	box-shadow: 0px 0px 20px 0px #000;
+}
+.nav_button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: none;
+	border-radius: 10px;
+	color: #ccc;
+	height: 70px;
+	width: 140px;
+	padding: 0px 10px;
+	margin: 8px 2px;
+	font-family: "Montserrat", sans-serif;
+	font-weight: 300;
+	font-size: 22px;
+	text-align: center;
+	text-decoration: none;
+	transition: color 0.4s ease-in-out, background-color 0.4s ease-in-out;
+}
+.nav_button:hover {
+	background-color: #a39a;
+	color: #fff;
+	cursor: pointer;
+}
+.nav_button:after {
+	content: "";
+	position: absolute;
+	width: 120px;
+	height: 68px;
+	border-bottom: 2px solid #df3dc4;
+	transition: border-bottom 0.3s ease-in-out;
+}
+.nav_button:hover:after {
+	border-bottom: solid 2px transparent;
+}
+#align_buttons {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+}
+.round_buttons {
+	flex-basis: 240px;
+	margin: 0px 5px 20px 5px;
+	background-color: #2228;
+	border-radius: 12px;
+	transition: background-color 0.2s ease-in-out;
+}
+.round_buttons_title {
+	background-color: #aaf;
+	padding: 15px 0px;
+	text-align: center;
+	border-radius: 12px 12px 4px 4px;
+	color: #222;
+	font-family: "Montserrat", sans-serif;
+	font-weight: 500;
+	font-size: 20px;
+	transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+.round_buttons > p {
+	margin: 20px 5px;
+	line-height: 22px;
+	text-align: center;
+}
+.round_buttons:hover {
+	background-color: #aaa8;
+	cursor: pointer;
+}
+.round_buttons:hover .round_buttons_title {
+	background-color: #4af !important;
+	color: #fff !important;
+}

@@ -1,0 +1,5 @@
+DirectoryIndex index.php
+Redirect /home http://mikufiku.codes/#home
+Redirect /sklep http://mikufiku.codes/#sklep
+Redirect /index http://mikufiku.codes/#home
+ErrorDocument 404 http://mikufiku.codes/#home

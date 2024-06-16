@@ -1,0 +1,18 @@
+<h1 style="margin-bottom: 60px;">Witaj <span id="nick" style="color: #f46"></span> na stronie <span style="color: #f46">Mikufiku.codes</span>!</h1>
+<div id="align_buttons">
+	<script>
+		$.each(sites, function(s_path, d) {
+			// s_path - Path inside search box
+			let title = d[1]; // Title
+			let should_add = d[3][0]; // Desc
+			let desc = d[3][1]; // Desc
+			let col = d[3][2]; // Color
+			if (should_add) {
+				addRoundButton(title, col, desc, s_path);
+			}
+		});
+		if ($("#login_name") != "") {
+			$("#nick").text($("#login_name").text());
+		}
+	</script>
+</div>

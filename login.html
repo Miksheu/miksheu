@@ -1,0 +1,43 @@
+<link rel="stylesheet" type="text/css" href="css/register.css">
+<script>
+	const login = document.getElementById("login");
+	const passw = document.getElementById("passw");
+	const err = document.getElementById("error");
+	const reg_login = new RegExp('^.{2,32}$');
+	const reg_passw = new RegExp('^.{8,128}$');
+	const guzior = document.getElementById("login_button");
+	const formik = document.getElementById("login_form");
+
+	function logInUser() {
+		// Szybki test na login
+		if (!reg_login.test(login.value)) {
+			err.innerHTML = "Podany login nie istnieje";
+		// Szybki test na hasło
+		} else if (!reg_passw.test(passw.value)) {
+			err.innerHTML = "Niepoprawne hasło";
+		} else{
+			$.ajax({
+				url: "validate_login.php",
+				type: "POST",
+				data: $("#login_form").serialize(),
+				success: function (res) {
+					if (res == 1) {
+						err.innerHTML = "Podany login nie istnieje";
+					} else if (res == 2) {
+						err.innerHTML = "Niepoprawne hasło";
+					} else {
+						$("#login_name").html(res);
+						openUrl("home");
+					}
+				}
+			});
+		}
+	}
+</script>
+
+<form action="validate_login.php" method="post" id="login_form" autocomplete="off" spellcheck="false">
+	<input type="text" id="login" name="login" placeholder="Nick">
+	<input type="password" id="passw" name="passw" placeholder="Password">
+	<p id="error"></p>
+	<input type="button" value="Sign in" id="login_button" onclick="logInUser()">
+</form>
